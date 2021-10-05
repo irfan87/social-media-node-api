@@ -14,8 +14,12 @@ mongoose.connect(`${process.env.MONGO_URL}`, () => {
 	console.log("MongoDB connected");
 });
 
-// middlewares
 dotenv.config();
+
+// middlewares
+app.use(express.json());
+app.use(helmet());
+app.use(morgan("common"));
 
 app.listen(PORT, (req, res) =>
 	console.log(`server is running on port ${PORT}`)
